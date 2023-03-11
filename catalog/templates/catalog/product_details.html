@@ -7,4 +7,10 @@
     <p class="fs-16 font-sans-serif">Количество: {{ product.count }} шт.</p>
     <p class="fs-16 font-sans-serif">Название категории: {{ product.category_name }}</p>
     <hr class="bg-danger">
+
+    <form action="." method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-success" type="submit" value="Добавить в корзину"/>
+    </form>
 {% endblock %}
