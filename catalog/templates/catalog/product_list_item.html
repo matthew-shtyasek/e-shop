@@ -4,5 +4,8 @@
     <p class="fs-16 font-sans-serif">Гарантия: {{ products.guaranty }} мес.</p>
     <p class="fs-16 font-sans-serif">Количество: {{ products.count }}</p>
     <p class="fs-16 font-sans-serif">Принадлежит к категории: {{ products.category_name }}</p>
+    {% if is_cart %}
+        <p class="fs-16 font-sans-serif">Кол-во (в корзине): {{count}}</p>
+    {% endif %}
     <hr class="products_divider">
 </a>
