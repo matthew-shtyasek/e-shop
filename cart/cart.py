@@ -57,3 +57,6 @@ class Cart:
     def save(self):  # сохраняем изменения в сессии
         self.session.modified = True
         print(self.session['cart'])
+
+    def keys(self):  # получаем список ид товаров, которые есть в корзине
+        return self.session['cart'].keys()
