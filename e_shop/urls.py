@@ -20,4 +20,5 @@ from catalog.views import product_details_view, product_list_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', include('catalog.urls', namespace='cat')),
+    path('cart/', include('cart.urls', namespace='cart')),
 ]
