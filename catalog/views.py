@@ -13,14 +13,19 @@ def product_details_view(request, product_id):
         form = Product2CartForm(request.POST)
         if form.is_valid():
             # count = form.cleaned_data['count']
-            cart[product_id] = form.cleaned_data['count']
+            cart[str(product_id)] = form.cleaned_data['count']
             form = Product2CartForm()
     else:
         form = Product2CartForm()
 
+    if str(product_id) in cart.session['cart'].keys():
+        in_cart = f'Добавлено в корзину {cart[str(product_id)]} шт.'
+    else:
+        in_cart = None
+
     context = {'product': prod,  # product = prod
                'form': form,
-               'in_cart': product_id in cart.session['cart'].keys()}
+               'in_cart': in_cart}
     return render(request, 'catalog/product_details.html', context)
 
 

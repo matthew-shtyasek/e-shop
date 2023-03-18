@@ -12,6 +12,7 @@ class Cart:
         if prod_id in self.session['cart'].keys():
             raise AttributeError(f'Товар с id {prod_id} уже есть в корзине!')
         self.session['cart'][prod_id] = prod_count
+        self.save()
 
     # +=
     def __iadd__(self, kv_pair):  # key-value
@@ -24,6 +25,7 @@ class Cart:
             self.session['cart'][prod_id] = prod_count
         except AttributeError as e:  # "пробрасываем" исключение вверх по стеку
             raise e
+        self.save()
 
     # cart[key] = value
     def __setitem__(self, key, value):
@@ -43,6 +45,7 @@ class Cart:
 
     def del_(self, key):  # удаление товара из корзины
         del self.session['cart'][key]
+        self.save()
 
     def __delitem__(self, key):  # del cart[4]
         self.del_(key)
@@ -51,3 +54,6 @@ class Cart:
         for key, value in self.session['cart'].items():
             yield (key, value)  # порождаем пары ключ-значение
 
+    def save(self):  # сохраняем изменения в сессии
+        self.session.modified = True
+        print(self.session['cart'])
