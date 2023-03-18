@@ -1,2 +1,13 @@
 {% extends 'root.html' %}
 
+{% load get_item %}
+
+{% block content %}
+    <h2>Товары в корзине:</h2>
+
+    {% for product in products %}
+        {% include 'catalog/product_list_item.html' with is_cart=True products=product %}
+    {% endfor %}
+
+    <p>Кол-во товаров в корзине: {{products|length}}</p>
+{% endblock %}

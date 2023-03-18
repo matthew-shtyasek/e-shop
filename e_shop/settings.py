@@ -59,6 +59,9 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
+            #'builtins': [
+            #    'e_shop.cart.common.te_func',
+            #],
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
