@@ -17,5 +17,6 @@ class CartListView(ListView):
         ids = list(map(int, list(cart.keys())))  # [1, 2, 3, 4]
         products = Product.objects.filter(id__in=ids)
         context[self.context_object_name] = products
+        context['cart'] = self.request.session['cart']
         return context
 

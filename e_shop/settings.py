@@ -60,7 +60,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             #'builtins': [
-            #    'e_shop.cart.common.te_func',
+            #    'cart.common.te_func',
             #],
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'e_shop.wsgi.application'
+#WSGI_APPLICATION = 'e_shop.wsgi.application'
 
 
 # Database
