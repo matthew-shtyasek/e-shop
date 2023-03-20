@@ -1,5 +1,10 @@
 {% extends 'root.html' %}
 {% load te_func %}
+{% load static %}
+
+{% block js %}
+    <script src="{% static 'js/cart_functions.js' %}"></script>
+{% endblock %}
 
 {% block content %}
     <h2>Товары в корзине:</h2>
