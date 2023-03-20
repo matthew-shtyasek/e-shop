@@ -1,4 +1,5 @@
 {% extends 'root.html' %}
+{% load te_func %}
 
 {% block content %}
     <h2>Товары в корзине:</h2>
@@ -7,5 +8,5 @@
         {% include 'catalog/product_list_item.html' with is_cart=True products=product %}
     {% endfor %}
 
-    <p>Кол-во товаров в корзине: {{products|length}}</p>
+    <p>Кол-во товаров в корзине: {{cart|prod_count}}</p>
 {% endblock %}
