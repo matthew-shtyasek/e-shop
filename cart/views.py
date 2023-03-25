@@ -24,7 +24,7 @@ class CartListView(ListView):
 
 
 def delete_from_cart(request, pk):
-    if not request.is_ajax():
+    if not request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         raise PermissionDenied()
     cart = Cart(request)
     try:
