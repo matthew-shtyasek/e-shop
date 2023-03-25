@@ -5,7 +5,7 @@
 $(document).ready(function () {
     //alert($('.product-count')[0].innerHTML);
 
-    $('.btn').click(function (e) {
+    $('.btn-delete').click(function (e) {
         // отменяем событие по умолчанию
         // в нашем случае это переход по ссылке
         e.preventDefault();
@@ -37,6 +37,33 @@ $(document).ready(function () {
         //$('.btn').attr('class').split(' ').forEach(function (e) { console.log(e); });
         //'prod-2'.indexOf('prod') != -1;
         //e.target.className
+    });
+
+    $('.btn-change').click(function (e) {
+        e.preventDefault();
+
+        // Получаем id товара по классу кнопки
+        let productId = null;
+        e.target.className.split(' ').forEach(function (item) {
+            if (item.indexOf('-change-btn') != -1)  // находим нужный нам класс
+                productId = Number(item.split('-')[1]); // получаем id из класса
+        });
+
+        let oldCount = Number($(`.product-${productId}-count`)[0].innerHTML);
+        let count = Number($(`.product-${productId}-changed`)[0].value);
+
+        $.get({
+            url: `/cart/change/${productId}/${count}/`,
+            success: function (data) {
+                $(`.product-${productId}-count`)[0].innerHTML = count;
+                let absoluteCount = Number($('.product-count')[0].innerHTML);
+                $('.product-count')[0].innerHTML = absoluteCount - (oldCount - count);
+            },
+            error: function (data) {
+                alert('Такого товара нет в корзине');
+            }
+        });
+
     });
 });
 

@@ -23,6 +23,12 @@ class CartListView(ListView):
         return context
 
 
+def change_product_view(request, pk, count):
+    cart = Cart(request)
+    cart[str(pk)] = str(count)
+    return JsonResponse({})
+
+
 def delete_from_cart(request, pk):
     if not request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         raise PermissionDenied()
