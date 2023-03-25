@@ -51,8 +51,8 @@
         <h1 class="font-roboto-helvetica">E-SHOP</h1>
         <nav class="w-25 d-flex justify-content-around">
             <a href="{% url 'cat:list' %}" class="font-helvetica font-sans-serif">Главная</a>
-            <a href="#" class="font-helvetica font-sans-serif">Товары</a>
-            <a href="#">Корзина</a>
+            <a href="{% url 'cat:list' %}" class="font-helvetica font-sans-serif">Товары</a>
+            <a href="{% url 'cart:cart' %}">Корзина</a>
         </nav>
     </header>
     <div>
