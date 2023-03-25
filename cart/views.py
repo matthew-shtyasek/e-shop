@@ -1,3 +1,5 @@
+from django.core.exceptions import PermissionDenied
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import ListView
 
@@ -20,3 +22,13 @@ class CartListView(ListView):
         context['cart'] = self.request.session['cart']
         return context
 
+
+def delete_from_cart(request, pk):
+    if not request.is_ajax():
+        raise PermissionDenied()
+    cart = Cart(request)
+    try:
+        del cart[str(pk)]
+    except KeyError as e:
+        return JsonResponse({'successed': False})  # json serializable
+    return JsonResponse({'successed': True})

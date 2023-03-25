@@ -13,5 +13,5 @@
         {% include 'catalog/product_list_item.html' with is_cart=True products=product %}
     {% endfor %}
 
-    <p>Кол-во товаров в корзине: {{cart|prod_count}}</p>
+    <p>Кол-во товаров в корзине: <span class="product-count">{{cart|prod_count}}</span></p>
 {% endblock %}
