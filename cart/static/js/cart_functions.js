@@ -49,6 +49,8 @@ $(document).ready(function () {
                 productId = Number(item.split('-')[1]); // получаем id из класса
         });
 
+        // oldCount - кол-во товара (сейчас в корзине)
+        // count - кол-во товара из пользовательского ввода
         let oldCount = Number($(`.product-${productId}-count`)[0].innerHTML);
         let count = Number($(`.product-${productId}-changed`)[0].value);
 
@@ -56,10 +58,18 @@ $(document).ready(function () {
             url: `/cart/change/${productId}/${count}/`,
             success: function (data) {
                 $(`.product-${productId}-count`)[0].innerHTML = count;
+                // absoluteCount - кол-во товара в корзине (всего)
                 let absoluteCount = Number($('.product-count')[0].innerHTML);
-                $('.product-count')[0].innerHTML = absoluteCount - (oldCount - count);
+                // находим насколько изменилось кол-во товара в корзине (всего)
+                absoluteCount -= oldCount - count;
+                // заменяем кол-во товара в корзине (всего)
+                $('.product-count')[0].innerHTML = absoluteCount;
+
+                // если изменяем кол-во товара на ноль - удаляем товар из корзины
+                if (count == 0)
+                    $(`.prod-${productId}`).trigger('click');
             },
-            error: function (data) {
+            error: function (data) { // запускается в случае ошибки на сервере
                 alert('Такого товара нет в корзине');
             }
         });
