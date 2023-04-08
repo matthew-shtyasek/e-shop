@@ -35,5 +35,5 @@ class CustomUserRegister(forms.UserCreationForm):
         super().__init__(*args, **kwargs)
 
         for name, item in self.fields.items():
-            item.widget.attr['class'] = 'form-control'
+            item.widget.attrs['class'] = 'form-control'
             item.help_text = ''
